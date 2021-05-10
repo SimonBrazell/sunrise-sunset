@@ -1,6 +1,6 @@
 # Sunset Shutdown
 
-A service that schedules an OS (Windows) shutdown at sunset.
+A script that schedules an OS (Windows) shutdown at sunset.
 
 ## Use Case
 
