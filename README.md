@@ -15,9 +15,9 @@ I made this to help limit the power consumption of my PC (mining rig), by restri
 1. Open the `sunset-shutdown.ps1` file, and populate it with your latitude and longitude as follows:
 
    ```
-   $Latitude="YOUR_LATITUDE"
-   $Longitude="YOUR_LONGITUDE"
+   $latitude="YOUR_LATITUDE"
+   $longitude="YOUR_LONGITUDE"
    ```
 
-2. To start run `sunset-shutdown.ps1`.
+2. To start run `sunset-shutdown.ps1` with Powershell.
 3. To stop open `Task Scheduler` and delete `\SunsetShutdown\ShutdownTask`.

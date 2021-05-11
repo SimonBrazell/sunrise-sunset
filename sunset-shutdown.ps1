@@ -1,18 +1,20 @@
-$Latitude="YOUR_LATITUDE"
-$Longitude="YOUR_LONGITUDE"
+$latitude="YOUR_LATITUDE"
+$longitude="YOUR_LONGITUDE"
 
-$Response = Invoke-RestMethod -Method Get -Uri "https://api.sunrise-sunset.org/json?lat=$Latitude&lng=$Longitude"
+$response = Invoke-RestMethod -Method Get -Uri "https://api.sunrise-sunset.org/json?lat=$latitude&lng=$longitude&date=today"
 
-$Sunset = Get-Date $Response.results.sunset
+$sunset = Get-Date $Response.results.sunset
 
-$TaskName= "ShutdownTask"
-$TaskPath= "\SunsetShutdown\"
-$Trigger= New-ScheduledTaskTrigger -At $Sunset.ToLocalTime().ToString("HH:MM") -Once
-$Action= New-ScheduledTaskAction -Execute "shutdown" -Argument "/S /F /T 600"
-Try
-{
-  Unregister-ScheduledTask -TaskName $TaskName -TaskPath $TaskPath -Confirm:$false
+$taskname = "ShutdownTask"
+$taskpath = "\SunsetShutdown\"
+$trigger = New-ScheduledTaskTrigger -At $sunset.ToLocalTime().ToString("HH:m:s") -Once
+$action = New-ScheduledTaskAction -Execute "shutdown" -Argument "/S /F /T 600"
+Try {
+  Unregister-ScheduledTask -TaskName $taskname -TaskPath $taskpath -Confirm:$false
 }
-Catch 
-{}
-Register-ScheduledTask -TaskName $TaskName -Trigger $Trigger -Action $Action -TaskPath $TaskPath
+Catch{}
+
+Register-ScheduledTask -TaskName $taskname -Trigger $trigger -Action $action -TaskPath $taskpath
+
+Write-Host
+Write-Host "Shutdown scheduled for -" $sunset.ToLocalTime().ToString("HH:m:s")
