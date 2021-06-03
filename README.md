@@ -1,6 +1,6 @@
 # Sunrise Startup / Sunset Shutdown
 
-Scripts that schedule a boot or an OS (Windows) shutdown at sunrise and sunset.
+Scripts that schedule a startup (WoL) or an OS (Windows) shutdown at sunrise and sunset.
 
 ## Use Case
 
@@ -10,7 +10,7 @@ I made these to help limit the power consumption of my PC (mining rig), by restr
 
 ### Prequisites:
 
-- Netowrk device running OpenWrt
+- Network device running OpenWrt
 - `date` (GNU coreutils 8.32)
 - `curl`
 - `jq`

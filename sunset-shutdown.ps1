@@ -7,7 +7,7 @@ $sunset = Get-Date $Response.results.sunset
 
 $taskname = "ShutdownTask"
 $taskpath = "\SunsetShutdown\"
-$trigger = New-ScheduledTaskTrigger -At $sunset.ToLocalTime().ToString("HH:m:s") -Once
+$trigger = New-ScheduledTaskTrigger -At $sunset.ToLocalTime().ToString("HH:m:s") -Daily
 $action = New-ScheduledTaskAction -Execute "shutdown" -Argument "/S /F /T 600"
 Try {
   Unregister-ScheduledTask -TaskName $taskname -TaskPath $taskpath -Confirm:$false
